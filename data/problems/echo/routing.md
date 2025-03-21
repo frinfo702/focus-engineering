@@ -1,7 +1,7 @@
 ---
 title: "REST APIルーティング"
 description: "Echoフレームワークを使ってREST APIのルーティングを実装する"
-difficulty: "中級"
+difficulty: "Medium"
 category: "routing"
 ---
 

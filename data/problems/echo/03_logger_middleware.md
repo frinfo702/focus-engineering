@@ -1,7 +1,7 @@
 ---
 title: "ログ記録ミドルウェア"
 description: "Echoでリクエスト情報をログに記録するミドルウェアを実装する"
-difficulty: "中級"
+difficulty: "Medium"
 category: "middleware"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "非同期データ取得"
 description: "fetch APIを使用して外部APIからデータを取得し表示する"
-difficulty: "初級"
+difficulty: "Easy"
 category: "async"
 ---
 

@@ -130,20 +130,20 @@ body {
   }
   
   /* 難易度による色分け */
-  .problem-card .difficulty[data-level="初級"], 
-  span.difficulty[data-level="初級"] {
+  .problem-card .difficulty[data-level=Easy], 
+  span.difficulty[data-level=Easy] {
     background-color: #e8f5e9;
     color: #388e3c;
   }
   
-  .problem-card .difficulty[data-level="中級"],
-  span.difficulty[data-level="中級"] {
+  .problem-card .difficulty[data-level=Medium],
+  span.difficulty[data-level=Medium] {
     background-color: #fff8e1;
     color: #ffa000;
   }
   
-  .problem-card .difficulty[data-level="上級"],
-  span.difficulty[data-level="上級"] {
+  .problem-card .difficulty[data-level=Hard],
+  span.difficulty[data-level=Hard] {
     background-color: #ffebee;
     color: #d32f2f;
   }
@@ -262,17 +262,17 @@ body {
   border-radius: 10px;
 }
 
-.sidebar-difficulty[data-level="初級"] {
+.sidebar-difficulty[data-level=Easy] {
   background-color: #e8f5e9;
   color: #388e3c;
 }
 
-.sidebar-difficulty[data-level="中級"] {
+.sidebar-difficulty[data-level=Medium] {
   background-color: #fff8e1;
   color: #ffa000;
 }
 
-.sidebar-difficulty[data-level="上級"] {
+.sidebar-difficulty[data-level=Hard] {
   background-color: #ffebee;
   color: #d32f2f;
 }

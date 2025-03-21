@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <header className="header">
-        <h1 className="logo">エンジニア学習プラットフォーム</h1>
+        <h1 className="logo">Focus-Engineering</h1>
         <nav>
           <a href="/">ホーム</a>
         </nav>
@@ -30,7 +30,7 @@ export default function Home() {
       </div>
 
       <footer className="footer">
-        <p>© 2023 エンジニア学習プラットフォーム</p>
+        <p>© 2025 Focus-Engineering</p>
       </footer>
     </div>
   );

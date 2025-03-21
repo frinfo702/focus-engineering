@@ -2,20 +2,22 @@ const languages = [
   {
     id: 'echo',
     name: 'Echo (Go)',
-    description: 'Goの高性能ウェブフレームワーク',
-    categories: [
-      { id: 'middleware', name: 'ミドルウェア' },
-      { id: 'routing', name: 'ルーティング' }
-    ]
+    description: 'Goの高性能ウェブフレームワーク'
   },
   {
     id: 'javascript',
     name: 'JavaScript',
-    description: 'フレームワークなしの純粋なJavaScript',
-    categories: [
-      { id: 'async', name: '非同期処理' },
-      { id: 'dom', name: 'DOM操作' }
-    ]
+    description: 'フレームワークなしの純粋なJavaScript'
+  },
+  {
+    id: 'flask',
+    name: 'Flask (Python)',
+    description: 'Pythonの軽量ウェブフレームワーク'
+  },
+  {
+    id: 'onepiece',
+    name: 'ワンピース',
+    description: 'ジャンプの看板漫画'
   }
 ];
 

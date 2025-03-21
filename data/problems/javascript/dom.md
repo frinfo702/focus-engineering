@@ -1,7 +1,7 @@
 ---
 title: "DOM操作による要素の追加"
 description: "DOMを操作して動的に要素を追加・削除する"
-difficulty: "中級"
+difficulty: "Medium"
 category: "dom"
 ---
 

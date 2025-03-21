@@ -1,17 +1,10 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useEffect } from 'react';
-import Prism from 'prismjs';
 import { getAllLanguages, getLanguage } from '../../../data/languages';
 import { getProblem, getProblemsByLanguage, getAllProblemPaths, getCategoriesByLanguage, getCategoryName } from '../../../lib/problems';
 
 export default function Problem({ language, problem, sidebarProblems, categories }) {
   const router = useRouter();
-  
-  useEffect(() => {
-    // ページ遷移後にコードをハイライト
-    Prism.highlightAll();
-  }, [problem]);
   
   if (router.isFallback) {
     return <div>読み込み中...</div>;

@@ -1,7 +1,7 @@
 ---
 title: "データベース連携"
 description: "FlaskとSQLAlchemyを使用してデータベース操作を実装する"
-difficulty: "上級"
+difficulty: "Hard"
 category: "flask"
 ---
 

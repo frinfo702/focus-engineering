@@ -1,7 +1,7 @@
 ---
 title: "テンプレートエンジン"
 description: "Flaskでテンプレートエンジンを使用してHTMLページを生成する"
-difficulty: "中級"
+difficulty: "Medium"
 category: "flask"
 ---
 

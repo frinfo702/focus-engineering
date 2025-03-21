@@ -52,7 +52,7 @@ category: "カテゴリ名" # オプション：自動推測される場合は�
 
 ### 4. 問題内容の記述
 
-問題内容は、具体的なサンプルとして `docs/problem_sample.md` を参照してください。問題ファイルには以下の要素を含めてください：
+問題内容は、具体的なサンプルとして [`docs/problem_sample.md`](https://github.com/frinfo702/focus-engineering/blob/main/docs/problem_sample.md) を参照してください。問題ファイルには以下の要素を含めてください：
 
 - タイトル（見出し）
 - 問題の説明

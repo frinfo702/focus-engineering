@@ -1,38 +1,154 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { getAllLanguages, getLanguage } from '../../../data/languages';
 import { getProblem, getProblemsByLanguage, getAllProblemPaths, getCategoriesByLanguage, getCategoryName } from '../../../lib/problems';
+
+// サイトのホスト名から簡易的な表示名を生成
+function getSiteDisplayName(hostname) {
+  // 特定のドメインに対するカスタム表示名
+  const domainDisplayNames = {
+    'github.com': 'GitHub',
+    'docs.github.com': 'GitHub Docs',
+    'zenn.dev': 'Zenn',
+    'qiita.com': 'Qiita',
+    'medium.com': 'Medium',
+    'developer.mozilla.org': 'MDN Web Docs',
+    'stackoverflow.com': 'Stack Overflow',
+    'flask.palletsprojects.com': 'Flask Documentation',
+    'python.org': 'Python.org',
+    'nodejs.org': 'Node.js',
+    'reactjs.org': 'React',
+    'vuejs.org': 'Vue.js',
+    'angular.io': 'Angular',
+    'npmjs.com': 'npm',
+    'docs.microsoft.com': 'Microsoft Docs',
+    'developer.apple.com': 'Apple Developer',
+    'aws.amazon.com': 'AWS',
+    'cloud.google.com': 'Google Cloud',
+    'azure.microsoft.com': 'Azure',
+    'youtube.com': 'YouTube',
+  };
+
+  // カスタム表示名がある場合はそれを返す
+  if (domainDisplayNames[hostname]) {
+    return domainDisplayNames[hostname];
+  }
+
+  // www. または先頭のサブドメインを削除
+  let cleanedHostname = hostname.replace(/^www\./, '');
+  
+  // ドメイン部分を取得（最後のドットまで）
+  const domainParts = cleanedHostname.split('.');
+  if (domainParts.length >= 2) {
+    // 最初のサブドメインとドメイン名だけを使用
+    const mainPart = domainParts[0].charAt(0).toUpperCase() + domainParts[0].slice(1);
+    return mainPart;
+  }
+
+  return cleanedHostname;
+}
+
+// リソースタイプに基づいた説明文を生成
+function getDescriptionByType(type, hostname) {
+  const typeDescriptions = {
+    'article': 'この記事では関連するトピックについて解説しています',
+    'documentation': '公式ドキュメントで詳しい情報を確認できます',
+    'github': 'GitHubリポジトリでコード例やライブラリを確認できます',
+    'tutorial': 'チュートリアルで実践的な知識を学べます',
+    'video': '動画で視覚的に理解を深められます',
+    'tool': '便利なツールやサービスです',
+    'website': '関連するウェブサイトです',
+  };
+
+  if (typeDescriptions[type]) {
+    return typeDescriptions[type];
+  }
+
+  const siteName = getSiteDisplayName(hostname);
+  return `${siteName}のリソースで関連情報を確認できます`;
+}
 
 export default function Problem({ language, problem, sidebarProblems, categories }) {
   const router = useRouter();
   const [resourcePreviews, setResourcePreviews] = useState([]);
+  const [loading, setLoading] = useState(false);
   
   useEffect(() => {
-    // 問題に関連リソースが設定されている場合にプレビュー情報を取得
-    if (problem.relatedResources && problem.relatedResources.length > 0) {
-      // ここではダミーデータを使用
-      // 実際の実装ではfetchを使ってOGP情報などを取得する
-      const previews = problem.relatedResources.map((resource, index) => {
-        // ダミープレビュー画像
-        const dummyImages = [
-          'https://picsum.photos/300/200?random=1',
-          'https://picsum.photos/300/200?random=2',
-          'https://picsum.photos/300/200?random=3'
-        ];
+    async function fetchResourcePreviews() {
+      if (problem.relatedResources && problem.relatedResources.length > 0) {
+        setLoading(true);
         
-        return {
-          id: index,
-          url: resource.url,
-          title: resource.title || 'リソースタイトル',
-          description: resource.description || '関連リソースの説明文がここに表示されます。',
-          image: resource.image || dummyImages[index % dummyImages.length],
-          type: resource.type || 'article'
-        };
-      });
-      
-      setResourcePreviews(previews);
+        try {
+          // 各リソースのOGP情報を取得
+          const previewPromises = problem.relatedResources.map(async (resource, index) => {
+            // ホスト名を取得
+            const hostname = new URL(resource.url).hostname;
+            const siteName = getSiteDisplayName(hostname);
+            
+            // すでに必要な情報が含まれている場合はそれを使用
+            if (resource.title && resource.description && resource.image) {
+              return {
+                id: index,
+                url: resource.url,
+                title: resource.title,
+                description: resource.description,
+                image: resource.image,
+                type: resource.type || 'article',
+                hostname,
+                siteName
+              };
+            }
+            
+            try {
+              // APIを呼び出してOGP情報を取得
+              const response = await axios.get(`/api/getResourcePreview?url=${encodeURIComponent(resource.url)}`);
+              const ogpData = response.data;
+              
+              // 適切な説明文を決定
+              const fallbackDescription = getDescriptionByType(resource.type || ogpData.type || 'website', ogpData.hostname || hostname);
+              
+              return {
+                id: index,
+                url: resource.url,
+                title: resource.title || ogpData.title || `${siteName}のリソース`,
+                description: resource.description || ogpData.description || fallbackDescription,
+                image: resource.image || ogpData.image || '',
+                type: resource.type || ogpData.type || 'website',
+                hostname: ogpData.hostname || hostname,
+                siteName: ogpData.siteName || siteName
+              };
+            } catch (error) {
+              console.error(`Error fetching preview for ${resource.url}:`, error);
+              
+              // エラーの場合でも自然な説明文を表示
+              const fallbackDescription = getDescriptionByType(resource.type || 'website', hostname);
+              
+              return {
+                id: index,
+                url: resource.url,
+                title: resource.title || `${siteName}のリソース`,
+                description: resource.description || fallbackDescription,
+                image: resource.image || '',
+                type: resource.type || 'website',
+                hostname,
+                siteName
+              };
+            }
+          });
+          
+          const previews = await Promise.all(previewPromises);
+          setResourcePreviews(previews);
+        } catch (error) {
+          console.error('Error fetching resource previews:', error);
+        } finally {
+          setLoading(false);
+        }
+      }
     }
+    
+    fetchResourcePreviews();
   }, [problem.relatedResources]);
   
   if (router.isFallback) {
@@ -132,24 +248,44 @@ export default function Problem({ language, problem, sidebarProblems, categories
             <aside className="resource-sidebar">
               <h3>関連リソース</h3>
               <div className="resource-cards">
-                {resourcePreviews.map(resource => (
-                  <a 
-                    key={resource.id} 
-                    href={resource.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="resource-card"
-                  >
-                    <div className="resource-card-image">
-                      <img src={resource.image} alt={resource.title} loading="lazy" />
-                    </div>
-                    <div className="resource-card-content">
-                      <h4>{resource.title}</h4>
-                      <p>{resource.description}</p>
-                      <span className="resource-type">{resource.type}</span>
-                    </div>
-                  </a>
-                ))}
+                {loading ? (
+                  <div className="resource-loading">プレビューを読み込み中...</div>
+                ) : (
+                  resourcePreviews.map(resource => (
+                    <a 
+                      key={resource.id} 
+                      href={resource.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="resource-card"
+                    >
+                      <div className={!resource.image ? "resource-card-no-image" : "resource-card-image"}>
+                        {resource.image ? (
+                          <img 
+                            src={resource.image} 
+                            alt={resource.title} 
+                            loading="lazy" 
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentNode.className = 'resource-card-no-image';
+                              e.target.parentNode.textContent = resource.siteName || resource.hostname;
+                            }}
+                          />
+                        ) : (
+                          resource.siteName || resource.hostname
+                        )}
+                      </div>
+                      <div className="resource-card-content">
+                        <h4>{resource.title}</h4>
+                        <p>{resource.description}</p>
+                        <div className="resource-card-footer">
+                          <span className="resource-type">{resource.type}</span>
+                          <span className="resource-hostname">{resource.hostname}</span>
+                        </div>
+                      </div>
+                    </a>
+                  ))
+                )}
               </div>
             </aside>
           )}

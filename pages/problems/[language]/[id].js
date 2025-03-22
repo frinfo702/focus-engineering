@@ -268,11 +268,26 @@ export default function Problem({ language, problem, sidebarProblems, categories
                             onError={(e) => {
                               e.target.style.display = 'none';
                               e.target.parentNode.className = 'resource-card-no-image';
-                              e.target.parentNode.textContent = resource.siteName || resource.hostname;
+                              const faviconUrl = `https://www.google.com/s2/favicons?domain=${resource.hostname}`;
+                              const favicon = document.createElement('img');
+                              favicon.src = faviconUrl;
+                              favicon.className = 'resource-favicon';
+                              const siteName = document.createElement('span');
+                              siteName.textContent = resource.siteName || resource.hostname;
+                              e.target.parentNode.innerHTML = '';
+                              e.target.parentNode.appendChild(favicon);
+                              e.target.parentNode.appendChild(siteName);
                             }}
                           />
                         ) : (
-                          resource.siteName || resource.hostname
+                          <>
+                            <img 
+                              src={`https://www.google.com/s2/favicons?domain=${resource.hostname}`} 
+                              alt="" 
+                              className="resource-favicon" 
+                            />
+                            <span>{resource.siteName || resource.hostname}</span>
+                          </>
                         )}
                       </div>
                       <div className="resource-card-content">

@@ -480,6 +480,15 @@
     letter-spacing: -0.5px;
     text-align: center;
     padding: 0 10px;
+    gap: 8px;
+  }
+  
+  .resource-favicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
+    flex-shrink: 0;
   }
   
   .resource-card-footer {

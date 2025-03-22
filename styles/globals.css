@@ -551,6 +551,65 @@
     color: var(--te-text-color);
   }
   
+  /* 埋め込みURLカード */
+  .embedded-url-card {
+    margin: 1.5rem 0;
+  }
+  
+  .embedded-url-card .resource-card {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid var(--te-secondary-color);
+    border-radius: var(--te-radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--te-text-color);
+    transition: var(--te-transition);
+    box-shadow: var(--te-shadow-sm);
+  }
+  
+  .embedded-url-card .resource-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--te-accent-color);
+  }
+  
+  .embedded-url-card .resource-card-no-image {
+    width: 120px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f7f7f7 0%, #e5e5e5 100%);
+    color: #777;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    text-align: center;
+    padding: 0 10px;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  
+  .embedded-url-card .resource-card-content {
+    flex-grow: 1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .embedded-url-card .resource-card-content h4 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    line-height: 1.3;
+    word-break: break-all;
+  }
+  
   /* モーダル */
   .modal-backdrop {
     position: fixed;

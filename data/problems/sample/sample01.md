@@ -17,9 +17,63 @@ relatedResources:
     description: "Zennに投稿されたPython関連の記事一覧"
 ---
 
-# 基本的なルーティング
+# サンプルマークダウンページ
 
-## 問題
+## さまざまな要素のテスト
+
+このページはマークダウンの様々な要素をテストするためのサンプルページです。
+
+### リンクカードのテスト
+
+以下はURLだけの行なので、自動的にカードとして表示されるはずです：
+
+https://echo.labstack.com/
+
+https://echo.labstack.com/docs/cookies
+
+https://teenage.engineering/
+
+### 通常のリンク
+
+これは[通常のリンク](https://github.com/frinfo702/focus-engineering)で、カードにはなりません。
+
+### リスト
+
+- 項目1
+- 項目2
+  - ネストされた項目
+  - もう一つのネスト
+- 項目3
+
+### コードブロック
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return '今日もいい天気ですね！'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### 表
+
+| 名前 | 説明 | バージョン |
+|------|------|----------|
+| Flask | Pythonのマイクロウェブフレームワーク | 2.0.x |
+| Echo | Goの高性能ウェブフレームワーク | 4.x |
+| Express | Node.jsのウェブフレームワーク | 4.x |
+
+### 引用
+
+> プログラミングは考え方であり、言語ではありません。
+> - 著名なプログラマーの言葉
+
+## オリジナルのコンテンツ
 
 Flaskフレームワークを使用して、以下の要件を満たすAPIエンドポイントを実装してください：
 1. GET `/` - "Hello, World!"というテキストを返す

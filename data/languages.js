@@ -15,9 +15,9 @@ const languages = [
     description: 'Pythonの軽量ウェブフレームワーク'
   },
   {
-    id: 'onepiece',
-    name: 'ワンピース',
-    description: 'ジャンプの看板漫画'
+    id: 'sample',
+    name: 'sample',
+    description: 'サンプル問題の表示'
   }
 ];
 

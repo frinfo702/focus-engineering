@@ -1,10 +1,39 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import { getAllLanguages, getLanguage } from '../../../data/languages';
 import { getProblem, getProblemsByLanguage, getAllProblemPaths, getCategoriesByLanguage, getCategoryName } from '../../../lib/problems';
 
 export default function Problem({ language, problem, sidebarProblems, categories }) {
   const router = useRouter();
+  const [resourcePreviews, setResourcePreviews] = useState([]);
+  
+  useEffect(() => {
+    // 問題に関連リソースが設定されている場合にプレビュー情報を取得
+    if (problem.relatedResources && problem.relatedResources.length > 0) {
+      // ここではダミーデータを使用
+      // 実際の実装ではfetchを使ってOGP情報などを取得する
+      const previews = problem.relatedResources.map((resource, index) => {
+        // ダミープレビュー画像
+        const dummyImages = [
+          'https://picsum.photos/300/200?random=1',
+          'https://picsum.photos/300/200?random=2',
+          'https://picsum.photos/300/200?random=3'
+        ];
+        
+        return {
+          id: index,
+          url: resource.url,
+          title: resource.title || 'リソースタイトル',
+          description: resource.description || '関連リソースの説明文がここに表示されます。',
+          image: resource.image || dummyImages[index % dummyImages.length],
+          type: resource.type || 'article'
+        };
+      });
+      
+      setResourcePreviews(previews);
+    }
+  }, [problem.relatedResources]);
   
   if (router.isFallback) {
     return <div>読み込み中...</div>;
@@ -97,6 +126,33 @@ export default function Problem({ language, problem, sidebarProblems, categories
               <div dangerouslySetInnerHTML={{ __html: problem.content }} />
             </div>
           </main>
+          
+          {/* 関連リソース（右側） */}
+          {resourcePreviews.length > 0 && (
+            <aside className="resource-sidebar">
+              <h3>関連リソース</h3>
+              <div className="resource-cards">
+                {resourcePreviews.map(resource => (
+                  <a 
+                    key={resource.id} 
+                    href={resource.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="resource-card"
+                  >
+                    <div className="resource-card-image">
+                      <img src={resource.image} alt={resource.title} loading="lazy" />
+                    </div>
+                    <div className="resource-card-content">
+                      <h4>{resource.title}</h4>
+                      <p>{resource.description}</p>
+                      <span className="resource-type">{resource.type}</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </aside>
+          )}
         </div>
       </div>
 

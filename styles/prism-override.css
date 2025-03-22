@@ -1,19 +1,5 @@
 /* VSCodeライクなシンタックスハイライトテーマ */
 
-/* 全体のコードブロックスタイル */
-pre[class*="language-"] {
-  background: #1e1e1e;
-  border-radius: 4px;
-  color: #d4d4d4;
-  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 1em 0;
-  overflow: auto;
-  padding: 1em;
-  text-shadow: none;
-}
-
 /* インラインコードスタイル */
 :not(pre) > code {
   background-color: #f0f0f0;
@@ -24,6 +10,62 @@ pre[class*="language-"] {
   padding: 0.2em 0.4em;
   white-space: nowrap;
   border: 1px solid #e1e1e1;
+}
+
+/* コードブロックの基本スタイル - ここで統一 */
+pre[class*="language-"] {
+  background-color: #191919 !important;
+  color: #d4d4d4;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 2rem 0 1.5rem 0;
+  padding: 3.5rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 4px;
+  overflow: auto;
+  position: relative;
+  border: 1px solid #333333;
+  text-shadow: none;
+}
+
+/* 言語バッジのスタイル */
+.language-badge {
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  background-color: #2d2d2d;
+  color: #ffffff;
+  border-radius: 3px;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  z-index: 20;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  border: 1px solid #444444;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* コピーボタンのスタイル */
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  background-color: #222222;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.copy-button:hover {
+  background-color: #ff5500;
 }
 
 /* トークンカラー - VSCode Dark+テーマに近い色 */
@@ -132,99 +174,6 @@ pre[class*="language-"] {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* コピーボタンのスタイル */
-.copy-button {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  border: none;
-  border-radius: 4px;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.8rem;
-  background-color: #222222;
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  z-index: 10;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.copy-button:hover {
-  background-color: #ff5500;
-}
-
-/* 言語バッジのスタイル */
-.language-badge {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.7rem;
-  background-color: #222222;
-  color: #f5f5f5;
-  border-radius: 4px;
-  font-family: "Fira Code", "Fira Mono", Menlo, Consolas, sans-serif;
-  z-index: 10;
-  text-transform: lowercase;
-  letter-spacing: 1px;
-}
-
-/* コードブロックの基本スタイル */
-pre[class*="language-"] {
-  background-color: #191919 !important;
-  margin: 1.5rem 0;
-  padding: 1.5rem;
-  border-radius: 4px;
-  overflow: auto;
-  box-shadow: none;
-  position: relative;
-  border: 1px solid #333333;
-}
-
-/* 特定言語のハイライト強調 */
-/* JavaScript/TypeScript系 */
-pre.language-javascript .token.keyword,
-pre.language-typescript .token.keyword,
-pre.language-jsx .token.keyword,
-pre.language-tsx .token.keyword {
-  color: #0066cc !important; /* 青 */
-  font-weight: 600 !important;
-}
-
-/* Python */
-pre.language-python .token.keyword,
-pre.language-py .token.keyword {
-  color: #0066cc !important; /* 青 */
-  font-weight: 600 !important;
-}
-
-pre.language-python .token.function,
-pre.language-py .token.function {
-  color: #9900cc !important; /* 紫 */
-}
-
-/* Go */
-pre.language-go .token.keyword {
-  color: #0066cc !important; /* 青 */
-  font-weight: 600 !important;
-}
-
-pre.language-go .token.function {
-  color: #a432ca !important; /* 紫 */
-}
-
-/* Ruby */
-pre.language-ruby .token.keyword {
-  color: #0066cc !important; /* 青 */
-  font-weight: 600 !important;
-}
-
-/* Bash */
-pre.language-bash .token.function {
-  color: #009933 !important; /* 緑 */
-}
-
 /* 行番号表示 (オプション) */
 pre[class*="language-"].line-numbers {
   position: relative;
@@ -245,7 +194,7 @@ pre[class*="language-"].line-numbers > code {
   left: -3.8em;
   width: 3em;
   letter-spacing: -1px;
-  border-right: 1px solid #dddddd;
+  border-right: 1px solid #444444;
   user-select: none;
 }
 
@@ -256,7 +205,7 @@ pre[class*="language-"].line-numbers > code {
 
 .line-numbers-rows > span:before {
   content: counter(linenumber);
-  color: #999999;
+  color: #858585;
   display: block;
   padding-right: 0.8em;
   text-align: right;

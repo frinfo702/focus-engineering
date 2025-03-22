@@ -3,6 +3,19 @@ title: "基本的なルーティング"
 description: "Flaskフレームワークで基本的なルーティングを実装する"
 difficulty: "Easy"
 category: "flask"
+relatedResources:
+  - title: "Flaskドキュメント - ルーティング"
+    url: "https://flask.palletsprojects.com/en/2.0.x/quickstart/#routing"
+    description: "Flask公式ドキュメントのルーティング解説"
+    type: "documentation"
+  - title: "Flask Web開発入門"
+    url: "https://github.com/pallets/flask"
+    description: "Flask GitHubリポジトリ"
+    type: "github"
+  - title: "Flaskルーティングの実践的活用法"
+    url: "https://zenn.dev"
+    description: "Flaskアプリケーション開発におけるルーティングのベストプラクティス"
+    type: "article"
 ---
 
 # 基本的なルーティング

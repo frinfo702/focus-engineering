@@ -8,6 +8,29 @@ import Script from 'next/script';
 // CDNからPrismJSをロードして問題を解決
 const prismVersion = '1.29.0';
 
+// スクリプトを動的にロードする関数
+const loadScript = (src) => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+};
+
+// スタイルシートを動的にロードする関数
+const loadStylesheet = (href) => {
+  return new Promise((resolve, reject) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.onload = resolve;
+    link.onerror = reject;
+    document.head.appendChild(link);
+  });
+};
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   
@@ -97,94 +120,65 @@ function MyApp({ Component, pageProps }) {
     };
   }, [router]);
 
+  // PrismJSのインポートと設定（クライアントサイドのみ）
+  useEffect(() => {
+    const initPrism = async () => {
+      try {
+        // PrismJSとテーマの読み込み
+        await Promise.all([
+          // CDNからPrismのコアをロード
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/prism.min.js`),
+          // CDNからPrismのCSSをロード (VSCodeライクなテーマを使用)
+          loadStylesheet(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/themes/prism-tomorrow.min.css`),
+          // 言語サポートを追加
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-javascript.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-typescript.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-jsx.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-tsx.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-css.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-python.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-go.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-java.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-ruby.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-bash.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-json.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-yaml.min.js`),
+          loadScript(`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-markdown.min.js`),
+        ]);
+
+        // PrismJSの手動ハイライト処理
+        if (window.Prism) {
+          window.Prism.highlightAll();
+          applyPrismHighlighting();
+        }
+      } catch (error) {
+        console.error('PrismJSの読み込みに失敗しました:', error);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      initPrism();
+    }
+
+    // コンポーネントがアンマウントされたときのクリーンアップ
+    return () => {
+      // クリーンアップが必要な場合はここに記述
+    };
+  }, []);
+
   return (
     <>
       <Head>
-        {/* PrismJS テーマのCDNリンク */}
-        <link 
-          rel="stylesheet" 
-          href={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/themes/prism-tomorrow.min.css`}
-        />
-        
         <style jsx global>{`
           code[class*="language-"],
           pre[class*="language-"],
           pre code,
           .token {
-            font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace !important;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace !important;
             font-size: 14px !important;
-            font-feature-settings: "ss01" !important;
           }
         `}</style>
       </Head>
-      
-      {/* Prism.jsをCDNから読み込む */}
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/prism.min.js`}
-        strategy="afterInteractive"
-        onLoad={() => {
-          console.log('Prism core loaded');
-          applyPrismHighlighting();
-        }}
-      />
-      
-      {/* 言語サポート追加 */}
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-markup.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-css.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-javascript.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-jsx.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-typescript.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-tsx.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-bash.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-python.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-go.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-ruby.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-c.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-cpp.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-json.min.js`}
-        strategy="afterInteractive"
-      />
-      <Script 
-        src={`https://cdnjs.cloudflare.com/ajax/libs/prism/${prismVersion}/components/prism-yaml.min.js`}
-        strategy="afterInteractive" 
-      />
       
       <Component {...pageProps} />
     </>

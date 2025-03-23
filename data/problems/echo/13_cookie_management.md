@@ -3,6 +3,11 @@ title: "クッキー管理"
 description: "Echoフレームワークでのクッキーの設定と取得"
 difficulty: "Easy"
 category: "cookies"
+relatedResources:
+  - title: "Echo公式ドキュメント - クッキー"
+    url: "https://echo.labstack.com/docs/cookies"
+    description: "Echoフレームワーク公式のクッキー操作解説"
+    type: "documentation"
 ---
 
 # Cookieの操作

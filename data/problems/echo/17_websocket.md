@@ -4,20 +4,18 @@ description: "Echoフレームワークでのウェブソケット機能の実�
 difficulty: "Hard"
 category: "realtime"
 relatedResources:
-  - title: "Flaskドキュメント - ルーティング"
-    url: "https://flask.palletsprojects.com/en/2.0.x/quickstart/#routing"
-    # description: "Flask公式ドキュメントのルーティング解説"
-    type: "documentation"
-  - title: "Flask GitHub"
-    url: "https://github.com/pallets/flask"
-    description: "Flask公式GitHubリポジトリ"
+  - title: "Gorilla WebSocket"
+    url: "https://github.com/gorilla/websocket"
+    description: "Go言語で最も使われているWebSocketライブラリ"
     type: "github"
-  - title: "Pythonフレームワーク入門"
-    url: "https://zenn.dev/topics/python"
-    description: "Zennに投稿されたPython関連の記事一覧"
-  - title: "perplexity"
-    url: "https://www.perplexity.ai/"
-    description: "うおw"
+  - title: "MDN - WebSocket API"
+    url: "https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API"
+    description: "WebSocketに関する詳細な解説"
+    type: "documentation"
+  - title: "Echo WebSocketサンプル"
+    url: "https://github.com/labstack/echox/tree/master/cookbook/websocket"
+    description: "Echo公式のWebSocketサンプルコード"
+    type: "github"
 ---
 
 # WebSocket実装
@@ -761,4 +759,30 @@ func main() {
                     <input type="text" id="message" placeholder="Type a message..." disabled>
                     <button onclick="sendMessage()" id="send-button" disabled>Send</button>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let socket;
+        
+        function connect() {
+            // ここにWebSocket接続コードを実装してください
+        }
+        
+        function disconnect() {
+            // ここにWebSocket切断コードを実装してください
+        }
+        
+        function sendMessage() {
+            // ここにメッセージ送信コードを実装してください
+        }
+    </script>
+</body>
+</html>
+		`)
+	})
+
+	e.Logger.Fatal(e.Start(":8080"))
+}
  

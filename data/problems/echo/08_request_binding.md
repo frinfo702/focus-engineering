@@ -3,6 +3,11 @@ title: "リクエストバインディング"
 description: "Echoフレームワークでのリクエストデータのバインディング"
 difficulty: "Medium"
 category: "binding"
+relatedResources:
+  - title: "Echo公式ドキュメント - バインディング"
+    url: "https://echo.labstack.com/docs/binding"
+    description: "Echoフレームワーク公式のリクエストバインディング解説"
+    type: "documentation"
 ---
 
 # リクエストバインディング

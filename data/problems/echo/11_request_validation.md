@@ -3,6 +3,19 @@ title: "リクエストバリデーション"
 description: "Echoフレームワークでのリクエストデータのバリデーション"
 difficulty: "Medium"
 category: "validation"
+relatedResources:
+  - title: "Echo公式ドキュメント - バリデーション"
+    url: "https://echo.labstack.com/docs/request#validate-data"
+    description: "Echoフレームワーク公式のリクエストバリデーション解説"
+    type: "documentation"
+  - title: "go-playground/validator"
+    url: "https://github.com/go-playground/validator"
+    description: "Echoで使用されているバリデーションライブラリ"
+    type: "github"
+  - title: "net/mail"
+    url: "https://pkg.go.dev/net/mail"
+    description: "Goの標準ライブラリのメールアドレス解析パッケージ"
+    type: "documentation"
 ---
 
 # リクエストバリデーション

@@ -3,6 +3,11 @@ title: "リダイレクト処理"
 description: "Echoフレームワークでの様々なリダイレクト処理の実装"
 difficulty: "Easy"
 category: "redirect"
+relatedResources:
+  - title: "Echo公式ドキュメント - リダイレクト"
+    url: "https://echo.labstack.com/docs/response#redirect-response"
+    description: "Echoフレームワーク公式のリダイレクト処理解説"
+    type: "documentation"
 ---
 
 # リダイレクト処理

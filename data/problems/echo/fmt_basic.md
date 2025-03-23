@@ -1,9 +1,14 @@
 ---
-title: "基本的な文字列フォーマット"
-description: "fmtパッケージを使用した基本的な文字列フォーマット"
+title: "書式付き出力の基本"
+description: "fmtパッケージを使用した基本的な書式付き出力"
 difficulty: "Easy"
 category: "標準ライブラリ"
 subcategory: "fmt"
+relatedResources:
+  - title: "Go公式ドキュメント - fmtパッケージ"
+    url: "https://golang.org/pkg/fmt/"
+    description: "Go言語標準のfmtパッケージのドキュメント"
+    type: "documentation"
 ---
 
 # 基本的な文字列フォーマット

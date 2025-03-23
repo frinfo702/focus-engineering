@@ -3,6 +3,15 @@ title: "コンテントネゴシエーション"
 description: "Echoフレームワークでのコンテントネゴシエーションの実装"
 difficulty: "Medium"
 category: "response"
+relatedResources:
+  - title: "Echo公式ドキュメント - レスポンス"
+    url: "https://echo.labstack.com/docs/response"
+    description: "Echoフレームワーク公式のレスポンス処理解説"
+    type: "documentation"
+  - title: "MDN - コンテントネゴシエーション"
+    url: "https://developer.mozilla.org/ja/docs/Web/HTTP/Content_negotiation"
+    description: "HTTPにおけるコンテントネゴシエーションの解説"
+    type: "article"
 ---
 
 # Content Negotiation

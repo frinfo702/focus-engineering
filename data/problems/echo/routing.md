@@ -248,3 +248,25 @@ func main() {
 	e.Start(":8080")
 }
 ```
+
+## 動作確認方法
+
+```bash
+# サーバー起動
+go run main.go
+
+# ユーザー一覧取得
+curl http://localhost:8080/api/users
+
+# 特定ユーザー取得
+curl http://localhost:8080/api/users/1
+
+# 新規ユーザー作成
+curl -X POST http://localhost:8080/api/users -H "Content-Type: application/json" -d '{"name":"鈴木一郎","email":"ichiro@example.com"}'
+
+# ユーザー更新
+curl -X PUT http://localhost:8080/api/users/1 -H "Content-Type: application/json" -d '{"name":"山田太郎更新","email":"taro.updated@example.com"}'
+
+# ユーザー削除
+curl -X DELETE http://localhost:8080/api/users/2
+```

@@ -3,6 +3,15 @@ title: "Server-Sent Events (SSE)"
 description: "Echoフレームワークでのサーバー送信イベント（SSE）の実装"
 difficulty: "Medium"
 category: "realtime"
+relatedResources:
+  - title: "MDN - Server-Sent Events"
+    url: "https://developer.mozilla.org/ja/docs/Web/API/Server-sent_events"
+    description: "Server-Sent Eventsに関する詳細な解説"
+    type: "documentation"
+  - title: "Go言語でのSSE実装例"
+    url: "https://github.com/r3labs/sse"
+    description: "Go言語でのServer-Sent Eventsの実装ライブラリ"
+    type: "github"
 ---
 
 # Server-Sent Events (SSE)

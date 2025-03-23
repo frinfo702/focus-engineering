@@ -3,6 +3,11 @@ title: "パスパラメータ"
 description: "Echoフレームワークを使ったパスパラメータの処理"
 difficulty: "Easy"
 category: "routing"
+relatedResources:
+  - title: "Echo公式ドキュメント - パスパラメータ"
+    url: "https://echo.labstack.com/docs/routing#path-parameters"
+    description: "Echoフレームワーク公式のパスパラメータの解説"
+    type: "documentation"
 ---
 
 # パスパラメータの取得

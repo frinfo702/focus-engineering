@@ -3,6 +3,11 @@ title: "レスポンス形式"
 description: "Echoフレームワークでの様々なレスポンス形式の実装"
 difficulty: "Easy"
 category: "response"
+relatedResources:
+  - title: "Echo公式ドキュメント - レスポンス"
+    url: "https://echo.labstack.com/docs/response"
+    description: "Echoフレームワーク公式のレスポンス処理解説"
+    type: "documentation"
 ---
 
 # レスポンス形式

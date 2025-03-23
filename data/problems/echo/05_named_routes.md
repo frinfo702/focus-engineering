@@ -3,6 +3,13 @@ title: "名前付きルート"
 description: "Echoフレームワークでの名前付きルートの定義と使用"
 difficulty: "Easy"
 category: "routing"
+relatedResources:
+  - title: "Echo公式ドキュメント - ルート名とURI生成"
+    url: "https://echo.labstack.com/docs/routing#route-naming"
+    description: "Echoフレームワーク公式のルート名とURI生成の解説"
+    type: "documentation"
+  - title: "string builder"
+    url: "https://pkg.go.dev/strings#Builder"
 ---
 
 # 名前付きルート
@@ -99,4 +106,19 @@ func main() {
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
+```
+
+## 動作確認方法
+
+```bash
+# サーバー起動
+go run main.go
+
+# 別ターミナルでテスト実行
+curl http://localhost:8080/routes
+
+# 各ルートも個別にテスト可能
+curl http://localhost:8080/users/123
+curl http://localhost:8080/products/electronics/456
+curl http://localhost:8080/articles/echo-framework-tutorial
 ```

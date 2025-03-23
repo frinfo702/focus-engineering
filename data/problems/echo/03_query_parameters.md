@@ -3,6 +3,11 @@ title: "クエリパラメータ"
 description: "Echoフレームワークを使ったクエリパラメータの処理"
 difficulty: "Easy"
 category: "routing"
+relatedResources:
+  - title: "Echo公式ドキュメント - リクエスト"
+    url: "https://echo.labstack.com/docs/request"
+    description: "Echoフレームワーク公式のリクエスト処理解説"
+    type: "documentation"
 ---
 
 # クエリパラメータの取得

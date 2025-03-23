@@ -1,9 +1,14 @@
 ---
-title: "JSONデータの処理"
-description: "encoding/jsonパッケージを使用したJSONデータのエンコードとデコード"
+title: "JSON処理"
+description: "encoding/jsonパッケージを使用したJSONデータの処理"
 difficulty: "Easy"
 category: "標準ライブラリ"
 subcategory: "encoding/json"
+relatedResources:
+  - title: "Go公式ドキュメント - encoding/jsonパッケージ"
+    url: "https://golang.org/pkg/encoding/json/"
+    description: "Go言語標準のJSONエンコーディングパッケージのドキュメント"
+    type: "documentation"
 ---
 
 # JSONデータの処理

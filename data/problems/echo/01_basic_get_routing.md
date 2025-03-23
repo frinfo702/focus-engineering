@@ -4,9 +4,10 @@ description: "Echoフレームワークを使った基本的なGETリクエス�
 difficulty: "Easy"
 category: "routing"
 relatedResources:
-  - title: "うおw"
-    url: "https://www.openai.fm/"
-    description: "うおwーぷんAI"
+  - title: "Echo公式ドキュメント - ルーティング"
+    url: "https://echo.labstack.com/docs/routing"
+    description: "Echoフレームワーク公式のルーティング解説"
+    type: "documentation"
 ---
 
 # 基本的なGETルーティング

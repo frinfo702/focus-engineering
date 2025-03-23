@@ -3,6 +3,11 @@ title: "基本的なミドルウェア"
 description: "Echoフレームワークでの基本的なミドルウェアの実装"
 difficulty: "Medium"
 category: "middleware"
+relatedResources:
+  - title: "Echo公式ドキュメント - ミドルウェア"
+    url: "https://echo.labstack.com/docs/middleware"
+    description: "Echoフレームワーク公式のミドルウェア解説"
+    type: "documentation"
 ---
 
 # 基本的なミドルウェア

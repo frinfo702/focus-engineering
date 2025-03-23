@@ -3,6 +3,11 @@ title: "静的ファイルの提供"
 description: "Echoフレームワークでの静的ファイルの提供方法"
 difficulty: "Easy"
 category: "static-files"
+relatedResources:
+  - title: "Echo公式ドキュメント - 静的ファイル"
+    url: "https://echo.labstack.com/docs/static-files"
+    description: "Echoフレームワーク公式の静的ファイル処理解説"
+    type: "documentation"
 ---
 
 # 静的ファイル配信

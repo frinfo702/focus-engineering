@@ -4,6 +4,11 @@ description: "bufioパッケージを使用したファイルの行単位での�
 difficulty: "Easy"
 category: "標準ライブラリ"
 subcategory: "bufio"
+relatedResources:
+  - title: "Go公式ドキュメント - bufioパッケージ"
+    url: "https://golang.org/pkg/bufio/"
+    description: "Go言語標準のbufioパッケージのドキュメント"
+    type: "documentation"
 ---
 
 # ファイル読み込みと行処理

@@ -4,6 +4,15 @@ description: "logパッケージを使用した基本的なロギング"
 difficulty: "Easy"
 category: "標準ライブラリ"
 subcategory: "log"
+relatedResources:
+  - title: "Go公式ドキュメント - logパッケージ"
+    url: "https://golang.org/pkg/log/"
+    description: "Go言語標準のlogパッケージのドキュメント"
+    type: "documentation"
+  - title: "Goで構造化ログを実装する方法"
+    url: "https://github.com/rs/zerolog"
+    description: "Go言語での高性能な構造化ログライブラリ"
+    type: "github"
 ---
 
 # ロギングの基本

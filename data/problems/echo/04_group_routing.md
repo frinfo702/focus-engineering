@@ -3,6 +3,12 @@ title: "グループルーティング"
 description: "Echoフレームワークを使ったグループルーティングの実装"
 difficulty: "Easy"
 category: "routing"
+relatedResources:
+  - title: "Echo公式ドキュメント - グループルーティング"
+    url: "https://echo.labstack.com/docs/routing#group"
+    description: "Echoフレームワーク公式のグループルーティングの解説"
+    type: "documentation"
+
 ---
 
 # グループルーティング

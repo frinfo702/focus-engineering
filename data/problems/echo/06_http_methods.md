@@ -3,6 +3,11 @@ title: "HTTPメソッド"
 description: "Echoフレームワークでの各種HTTPメソッドの実装"
 difficulty: "Easy"
 category: "routing"
+relatedResources:
+  - title: "Echo公式ドキュメント - ルーティング"
+    url: "https://echo.labstack.com/docs/routing"
+    description: "Echoフレームワーク公式のルーティングとHTTPメソッドの解説"
+    type: "documentation"
 ---
 
 # HTTPメソッド

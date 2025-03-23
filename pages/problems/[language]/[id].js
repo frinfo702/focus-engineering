@@ -84,8 +84,25 @@ export default function Problem({ language, problem, sidebarProblems, categories
           // 各リソースのOGP情報を取得
           const previewPromises = problem.relatedResources.map(async (resource, index) => {
             // ホスト名を取得
-            const hostname = new URL(resource.url).hostname;
-            const siteName = getSiteDisplayName(hostname);
+            let hostname = '';
+            let siteName = '';
+            
+            try {
+              hostname = new URL(resource.url).hostname;
+              siteName = getSiteDisplayName(hostname);
+            } catch (e) {
+              console.error(`Invalid URL: ${resource.url}`, e);
+              return {
+                id: index,
+                url: resource.url || '#',
+                title: resource.title || '関連リソース',
+                description: resource.description || '問題解決に役立つ外部リソースです',
+                image: resource.image || '',
+                type: resource.type || 'website',
+                hostname: 'unknown',
+                siteName: '関連サイト'
+              };
+            }
             
             // すでに必要な情報が含まれている場合はそれを使用
             if (resource.title && resource.description && resource.image) {
@@ -123,17 +140,22 @@ export default function Problem({ language, problem, sidebarProblems, categories
               console.error(`Error fetching preview for ${resource.url}:`, error);
               
               // エラーの場合でも自然な説明文を表示
-              const fallbackDescription = getDescriptionByType(resource.type || 'website', hostname);
+              let fallbackDescription = '';
+              try {
+                fallbackDescription = getDescriptionByType(resource.type || 'website', hostname);
+              } catch (e) {
+                fallbackDescription = '問題解決に役立つリソースです';
+              }
               
               return {
                 id: index,
                 url: resource.url,
-                title: resource.title || `${siteName}のリソース`,
+                title: resource.title || `${siteName || '関連'}のリソース`,
                 description: resource.description || fallbackDescription,
                 image: resource.image || '',
                 type: resource.type || 'website',
-                hostname,
-                siteName
+                hostname: hostname || 'unknown',
+                siteName: siteName || '関連サイト'
               };
             }
           });

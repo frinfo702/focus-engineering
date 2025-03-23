@@ -84,8 +84,28 @@ export default async function handler(req, res) {
       maxRedirects: 5
     });
 
-    const html = response.data;
-    const $ = cheerio.load(html);
+    let html = '';
+    let $ = null;
+    
+    try {
+      html = response.data;
+      $ = cheerio.load(html);
+    } catch (cheerioError) {
+      console.error('Error loading HTML with cheerio:', cheerioError.message);
+      // cheerioが失敗した場合は、基本情報だけで応答
+      const hostname = new URL(url).hostname;
+      const siteName = getSiteDisplayName(hostname);
+      
+      return res.status(200).json({
+        title: `${siteName}のリソース`,
+        description: getDescriptionByType('website', hostname),
+        image: '',
+        type: 'website',
+        url,
+        hostname,
+        siteName
+      });
+    }
 
     // 基本情報の取得
     const hostname = new URL(url).hostname;
@@ -160,12 +180,13 @@ export default async function handler(req, res) {
         siteName
       });
     } catch (e) {
+      // URLのパースに失敗した場合も適切な情報を返す
       res.status(200).json({
         title: '関連リソース',
         description: '問題解決に役立つ外部リソースです',
         image: '',
         type: 'website',
-        url,
+        url: url || '#',
         hostname: 'unknown',
         siteName: '関連サイト'
       });

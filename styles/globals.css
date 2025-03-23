@@ -787,17 +787,12 @@
   }
   
   @media (max-width: 768px) {
-    .grid {
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 10px;
-    }
-    
-    .action-bar {
-      flex-direction: column;
-    }
-    
     .problem-layout {
       grid-template-columns: 1fr;
+      grid-template-areas: 
+        "sidebar"
+        "main"
+        "resources";
     }
     
     .problem-sidebar {
@@ -807,9 +802,24 @@
       margin-bottom: 20px;
     }
     
+    .resource-sidebar {
+      margin-top: 20px;
+      position: relative;
+      max-height: none;
+    }
+    
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+    }
+    
     .resource-cards {
       grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
       gap: 10px;
+    }
+    
+    .action-bar {
+      flex-direction: column;
     }
   }
   

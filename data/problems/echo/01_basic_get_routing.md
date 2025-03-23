@@ -3,6 +3,10 @@ title: "基本的なGETルーティング"
 description: "Echoフレームワークを使った基本的なGETリクエストの処理"
 difficulty: "Easy"
 category: "routing"
+relatedResources:
+  - title: "うおw"
+    url: "https://www.openai.fm/"
+    description: "うおwーぷんAI"
 ---
 
 # 基本的なGETルーティング

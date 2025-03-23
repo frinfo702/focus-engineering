@@ -3,6 +3,21 @@ title: "WebSocket"
 description: "Echoフレームワークでのウェブソケット機能の実装"
 difficulty: "Hard"
 category: "realtime"
+relatedResources:
+  - title: "Flaskドキュメント - ルーティング"
+    url: "https://flask.palletsprojects.com/en/2.0.x/quickstart/#routing"
+    # description: "Flask公式ドキュメントのルーティング解説"
+    type: "documentation"
+  - title: "Flask GitHub"
+    url: "https://github.com/pallets/flask"
+    description: "Flask公式GitHubリポジトリ"
+    type: "github"
+  - title: "Pythonフレームワーク入門"
+    url: "https://zenn.dev/topics/python"
+    description: "Zennに投稿されたPython関連の記事一覧"
+  - title: "perplexity"
+    url: "https://www.perplexity.ai/"
+    description: "うおw"
 ---
 
 # WebSocket実装
@@ -746,4 +761,4 @@ func main() {
                     <input type="text" id="message" placeholder="Type a message..." disabled>
                     <button onclick="sendMessage()" id="send-button" disabled>Send</button>
                 </div>
-  <response clipped><NOTE>To save on context only part of this file has been shown to you. You should retry this tool after you have searched inside the file with `grep -n` in order to find the line numbers of what you are looking for.</NOTE>
+ 

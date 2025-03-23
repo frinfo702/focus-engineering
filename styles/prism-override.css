@@ -22,10 +22,32 @@ pre[class*="language-"] {
   margin: 2rem 0 1.5rem 0;
   padding: 3.5rem 1.5rem 1.5rem 1.5rem;
   border-radius: 4px;
-  overflow: auto;
+  overflow-x: auto !important;
+  white-space: pre;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   position: relative;
   border: 1px solid #333333;
   text-shadow: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* コードブロック内のコード */
+code[class*="language-"] {
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+  word-wrap: normal;
+  display: inline-block;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 長い行のために水平スクロールを有効にする */
+.token-line {
+  white-space: pre;
+  display: block;
 }
 
 /* 言語バッジのスタイル */

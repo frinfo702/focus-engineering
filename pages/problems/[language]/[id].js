@@ -238,13 +238,15 @@ export default function Problem({ language, problem, sidebarProblems, categories
               </div>
             </div>
             
-            <div className="problem-content">
-              <div dangerouslySetInnerHTML={{ __html: problem.content }} />
+            <div className="problem-content-wrapper">
+              <div className="problem-content">
+                <div dangerouslySetInnerHTML={{ __html: problem.content }} />
+              </div>
             </div>
           </main>
           
           {/* 関連リソース（右側） */}
-          {resourcePreviews.length > 0 && (
+          {resourcePreviews.length > 0 ? (
             <aside className="resource-sidebar">
               <h3>関連リソース</h3>
               <div className="resource-cards">
@@ -301,6 +303,13 @@ export default function Problem({ language, problem, sidebarProblems, categories
                     </a>
                   ))
                 )}
+              </div>
+            </aside>
+          ) : (
+            <aside className="resource-sidebar">
+              <h3>関連リソース</h3>
+              <div className="resource-cards">
+                <div>この問題には関連リソースがありません</div>
               </div>
             </aside>
           )}
